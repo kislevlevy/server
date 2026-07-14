@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ritalin 10mg IR: Clinical Optimization Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #fdfbf7;
+        color: #334155;
+      }
+      .chart-container {
+        position: relative;
+        width: 100%;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 300px;
+        max-height: 400px;
+      }
+      @media (min-width: 768px) {
+        .chart-container {
+          height: 350px;
+        }
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        border: 1px solid #e2e8f0;
+      }
+      .tab-active {
+        border-bottom: 3px solid #6366f1;
+        color: #6366f1;
+      }
+    </style>
+  </head>
+  <body class="p-4 md:p-8">
+    <header class="max-w-5xl mx-auto mb-10 text-center">
+      <h1 class="text-4xl font-bold text-slate-800 mb-2">
+        Ritalin 10mg IR Optimizer
+      </h1>
+      <p class="text-lg text-slate-500 italic">
+        Pharmacological Strategy & ADHD Coaching Protocol
+      </p>
+      <div class="mt-4 flex justify-center space-x-2">
+        <span
+          class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium"
+          >Titration Phase Guide</span
+        >
+        <span
+          class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium"
+          >IR Formulation (10mg)</span
+        >
+      </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto space-y-12">
+      <!-- SECTION 1: TIMING & DOSAGE -->
+      <section id="timing" class="space-y-6">
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+          <h2 class="text-2xl font-semibold text-slate-800 mb-4">
+            1. Timing & Dosage Strategy
+          </h2>
+          <p class="text-slate-600 mb-6">
+            This section translates the pharmacokinetic profile of
+            Methylphenidate into a practical schedule. Since the 10mg IR
+            formulation has a rapid onset but a short half-life, timing is the
+            difference between a productive evening and a "blank" study session.
+            We have mapped your 17:00-21:00 window to ensure peak concentration
+            ($C_{max}$) aligns with your most difficult tasks.
+          </p>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="space-y-4">
+              <div class="p-4 bg-indigo-50 rounded-xl border border-indigo-100">
+                <h3 class="font-bold text-indigo-900">
+                  Weekday Protocol: The 16:30 Dose
+                </h3>
+                <ul class="mt-2 space-y-2 text-sm text-indigo-800">
+                  <li><strong>Administration:</strong> 16:15 – 16:30</li>
+                  <li>
+                    <strong>Why?</strong> Allows 45 mins for absorption and
+                    crossing the blood-brain barrier.
+                  </li>
+                  <li>
+                    <strong>Insomnia Mitigation:</strong> Stop all caffeine by
+                    14:00 and use a "Digital Sunset" at 21:30 to let melatonin
+                    override residual stimulation.
+                  </li>
+                  <li>
+                    <strong>Calming adjuncts:</strong> Post-study L-Theanine
+                    (~200mg) and evening Magnesium (e.g. glycinate) can ease
+                    residual neuro-excitability. Clear supplements with your
+                    doctor first.
+                  </li>
+                </ul>
+              </div>
+              <div
+                class="p-4 bg-emerald-50 rounded-xl border border-emerald-100"
+              >
+                <h3 class="font-bold text-emerald-900">
+                  Weekend Protocol: Sustained Focus
+                </h3>
+                <ul class="mt-2 space-y-2 text-sm text-emerald-800">
+                  <li>
+                    <strong>Spacing:</strong> 3.5 to 4 hours between doses.
+                  </li>
+                  <li>
+                    <strong>Max Dose:</strong> 60mg/day is the regulatory
+                    ceiling — <em>not</em> a personal target. On a 10mg script,
+                    doctors typically cap you at 2–3 tablets/day. Follow your
+                    prescription.
+                  </li>
+                  <li>
+                    <strong>Avoid Overlap:</strong> Taking the second dose too
+                    early causes "Autonomic Overdrive" (tachycardia/anxiety).
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="flex flex-col items-center">
+              <h4
+                class="text-sm font-semibold text-slate-500 mb-4 uppercase tracking-wider text-center"
+              >
+                Plasma Concentration Curve (Estimated)
+              </h4>
+              <div class="chart-container">
+                <canvas id="plasmaChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: TITRATION PROTOCOL -->
+      <section id="titration" class="space-y-6">
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+          <h2 class="text-2xl font-semibold text-slate-800 mb-4">
+            2. The "Trial and Error" (Titration) Protocol
+          </h2>
+          <p class="text-slate-600 mb-6">
+            Titration is an empirical scientific process. No two brains respond
+            identically to Methylphenidate. Use the matrix below to identify if
+            your 10mg starting dose needs adjustment. Remember: the goal is
+            "volitional attention," not feeling "drugged" or "high."
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            <button
+              onclick="showTitration('low')"
+              class="p-4 text-left border rounded-xl hover:bg-red-50 transition border-red-100"
+              id="btn-low"
+            >
+              <span class="block text-xs font-bold text-red-500 uppercase"
+                >Sub-Therapeutic</span
+              >
+              <span class="text-lg font-semibold">Too Low</span>
+            </button>
+            <button
+              onclick="showTitration('right')"
+              class="p-4 text-left border rounded-xl hover:bg-green-50 transition border-green-100"
+              id="btn-right"
+            >
+              <span class="block text-xs font-bold text-green-500 uppercase"
+                >Optimal Window</span
+              >
+              <span class="text-lg font-semibold">Just Right</span>
+            </button>
+            <button
+              onclick="showTitration('high')"
+              class="p-4 text-left border rounded-xl hover:bg-orange-50 transition border-orange-100"
+              id="btn-high"
+            >
+              <span class="block text-xs font-bold text-orange-500 uppercase"
+                >Supra-Therapeutic</span
+              >
+              <span class="text-lg font-semibold">Too High</span>
+            </button>
+          </div>
+
+          <div
+            id="titration-content"
+            class="p-6 bg-slate-50 rounded-xl min-h-[200px]"
+          >
+            <!-- Dynamic content injected here -->
+            <p class="text-center text-slate-400 italic mt-10">
+              Click a category above to view symptoms and markers.
+            </p>
+          </div>
+
+          <div class="mt-8">
+            <h3 class="font-bold text-slate-800 mb-4">
+              Real-Time Titration Log Template
+            </h3>
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm text-left border-collapse">
+                <thead>
+                  <tr class="bg-slate-100">
+                    <th class="p-3 border">Metric</th>
+                    <th class="p-3 border">Check-in Time</th>
+                    <th class="p-3 border">What to Record</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="p-3 border font-medium">Pre-Dose Baseline</td>
+                    <td class="p-3 border italic text-slate-400">T - 0:15</td>
+                    <td class="p-3 border">
+                      Current mood, sleep quality, and last meal eaten.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="p-3 border font-medium">Onset & Focus</td>
+                    <td class="p-3 border italic text-slate-400">T + 0:45</td>
+                    <td class="p-3 border">
+                      Task initiation friction (1-10). Is it easier to start?
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="p-3 border font-medium">Peak Check</td>
+                    <td class="p-3 border italic text-slate-400">T + 2:00</td>
+                    <td class="p-3 border">
+                      Heart rate, jaw tension, and "The Hyperfocus Trap" status.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="p-3 border font-medium">The Offset</td>
+                    <td class="p-3 border italic text-slate-400">T + 4:00</td>
+                    <td class="p-3 border">
+                      Irritability level, fatigue, and "Crash" severity.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="p-3 border font-medium">End-of-Day Review</td>
+                    <td class="p-3 border italic text-slate-400">
+                      22:00 / Bed
+                    </td>
+                    <td class="p-3 border">
+                      Total food &amp; water intake, appetite loss, and how
+                      easily you fall asleep (secondary insomnia check).
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: OPTIMIZATION (NUTRITION/PHYSICAL) -->
+      <section id="optimization" class="space-y-6">
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+          <h2 class="text-2xl font-semibold text-slate-800 mb-4">
+            3. Optimizing the Experience
+          </h2>
+          <p class="text-slate-600 mb-6">
+            A stimulant is a metabolic load. Without proper physical
+            maintenance, the "cognitive engine" will overheat, resulting in
+            headaches and brain fog. This section provides the behavioral
+            scaffolding required to sustain medication efficacy.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Nutrition -->
+            <div
+              class="p-5 border border-slate-100 rounded-2xl bg-white hover:shadow-md transition"
+            >
+              <div
+                class="w-10 h-10 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center mb-4 font-bold"
+              >
+                N
+              </div>
+              <h3 class="font-bold mb-2">Nutrition & pH</h3>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                <strong>Protein Loading:</strong> Eat a protein-rich meal 30–45m
+                before dosing to supply tyrosine (dopamine precursor).<br /><br />
+                <strong>Appetite Suppression:</strong> Ritalin reliably kills
+                hunger during its active window — you'll skip meals without
+                noticing. Eat on schedule anyway to avoid a hypoglycemic
+                crash.<br /><br />
+                <strong>The Acid Myth:</strong> Unlike Adderall, Ritalin is
+                processed by CES1 enzymes in the liver, so it's largely
+                pH-independent. Vitamin C/Citrus won't "kill" the effect, but
+                high-fat meals can delay the onset.
+              </p>
+            </div>
+
+            <!-- Physical State -->
+            <div
+              class="p-5 border border-slate-100 rounded-2xl bg-white hover:shadow-md transition"
+            >
+              <div
+                class="w-10 h-10 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4 font-bold"
+              >
+                H
+              </div>
+              <h3 class="font-bold mb-2">Hydration & Heart</h3>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                <strong>Headache & Dry Mouth:</strong> Ritalin acts as a mild
+                diuretic and suppresses saliva. Keep an electrolyte-balanced
+                drink on your desk and sip steadily through the window.<br /><br />
+                <strong>Heart Rate:</strong> Mild elevation is expected. Watch
+                for palpitations, a persistently racing pulse, or the
+                compounding effect of caffeine — flag these to your doctor.
+              </p>
+            </div>
+
+            <!-- Psychological -->
+            <div
+              class="p-5 border border-slate-100 rounded-2xl bg-white hover:shadow-md transition"
+            >
+              <div
+                class="w-10 h-10 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center mb-4 font-bold"
+              >
+                P
+              </div>
+              <h3 class="font-bold mb-2">The Hyperfocus Trap</h3>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                <strong>Behavioral Anchor:</strong> Do not "wait" for the drug.
+                Start studying 15m <i>before</i> it kicks in. <br /><br />
+                <strong>The Danger:</strong> If you are on Reddit when the 10mg
+                kicks in, you will spend 3 hours perfectly focused on Reddit.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: THE REBOUND -->
+      <section id="crash" class="space-y-6">
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+          <h2 class="text-2xl font-semibold text-slate-800 mb-4">
+            4. Managing the "Crash" (Rebound Effect)
+          </h2>
+          <p class="text-slate-600 mb-6 text-sm">
+            The "Ritalin Crash" happens ~3.5–4.5 hours post-dose: as IR clears
+            rapidly, the blockade on dopamine/norepinephrine transporters lifts,
+            leaving a temporary neurotransmitter deficit. Symptoms return —
+            sometimes worse than baseline — with irritability, sudden fatigue,
+            and sensory hypersensitivity (the "Arsenic Hour").
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="flex items-start space-x-3">
+              <div
+                class="w-6 h-6 bg-rose-100 text-rose-600 rounded flex-shrink-0 flex items-center justify-center text-xs font-bold"
+              >
+                1
+              </div>
+              <p class="text-xs text-slate-500">
+                <strong>The Nutritional Bridge:</strong> Eat a high-protein /
+                complex-carb snack at the ~3.5-hour mark, before the crash hits.
+                Fasting-induced hypoglycemia sharply worsens the emotional drop.
+              </p>
+            </div>
+            <div class="flex items-start space-x-3">
+              <div
+                class="w-6 h-6 bg-rose-100 text-rose-600 rounded flex-shrink-0 flex items-center justify-center text-xs font-bold"
+              >
+                2
+              </div>
+              <p class="text-xs text-slate-500">
+                <strong>Cognitive Decompression:</strong> Don't schedule
+                demanding tasks or stressful interactions during the offset
+                window. A brief 15-min walk or passive relaxation lets the
+                nervous system reset.
+              </p>
+            </div>
+            <div class="flex items-start space-x-3">
+              <div
+                class="w-6 h-6 bg-amber-100 text-amber-600 rounded flex-shrink-0 flex items-center justify-center text-xs font-bold"
+              >
+                3
+              </div>
+              <p class="text-xs text-slate-500">
+                <strong>Step-Down / Booster Dose:</strong> If lifestyle measures
+                aren't enough, physicians sometimes prescribe a small booster
+                (e.g. 2.5–5mg) ~30–45 min before the crash to smooth the
+                drop-off. <em>Only with your doctor's instruction</em> —
+                standard 10mg IR is scored and can be halved, but never
+                crush/split ER forms.
+              </p>
+            </div>
+            <div class="flex items-start space-x-3">
+              <div
+                class="w-6 h-6 bg-amber-100 text-amber-600 rounded flex-shrink-0 flex items-center justify-center text-xs font-bold"
+              >
+                4
+              </div>
+              <p class="text-xs text-slate-500">
+                <strong>Switch to Extended-Release:</strong> If the crash stays
+                unbearable after ~2 weeks, ask your doctor about an ER
+                formulation (Ritalin LA / Concerta), which tapers off smoothly
+                instead of dropping off a cliff.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="mt-6 p-4 bg-red-50 border border-red-100 rounded-xl flex items-start space-x-3"
+          >
+            <div
+              class="w-6 h-6 bg-red-200 text-red-700 rounded flex-shrink-0 flex items-center justify-center text-xs font-bold"
+            >
+              ⚠
+            </div>
+            <p class="text-xs text-red-800">
+              <strong>Absolute Contraindication — Alcohol:</strong> Never mix
+              Ritalin with ethanol. The liver's CES1 enzyme converts the pair
+              into <i>ethylphenidate</i>, a toxic metabolite; the stimulant also
+              masks intoxication cues (raising overdose risk) and severely
+              strains the cardiovascular system. This is not a crash remedy — it
+              is a hard "never."
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer
+      class="max-w-6xl mx-auto mt-12 mb-8 text-center text-slate-400 text-xs"
+    >
+      <p>
+        This application is for informational purposes only. Consult your
+        prescribing physician before making any dosage changes.
+      </p>
+    </footer>
+
+    <script>
+      // TITRATION LOGIC
+      const titrationData = {
+        low: {
+          title: "Signs 10mg is Too Low",
+          points: [
+            "Task initiation remains high (friction feels normal).",
+            "Distractibility is unchanged (noise still bothers you).",
+            "Paradoxical fatigue/sleepiness shortly after dose.",
+            "The feeling of 'spinning your wheels' persists.",
+          ],
+          color: "red",
+        },
+        right: {
+          title: "Signs 10mg is Just Right",
+          points: [
+            "Volitional Attention: You choose to study and you just... do it.",
+            "Calm Clarity: External noises fade into the background.",
+            "Emotional Regulation: Frustrations don't derail your afternoon.",
+            "Autonomic side effects (heart rate, BP) stay within a safe, comfortable range.",
+            "The offset is gradual rather than a jarring drop-off.",
+          ],
+          color: "green",
+        },
+        high: {
+          title: "Signs 10mg is Too High",
+          points: [
+            "Affective Blunting (The Zombie Effect): No humor, no emotion.",
+            "Hyperfocus Trap: Spent 3 hours cleaning your desktop icons.",
+            "Autonomic Drive: Jaw clenching, sweating, or racing heart.",
+            "Acute Anxiety: Feeling 'wired' or 'jittery' at peak concentration.",
+          ],
+          color: "orange",
+        },
+      };
+
+      function showTitration(key) {
+        const data = titrationData[key];
+        const container = document.getElementById("titration-content");
+
+        // Reset buttons
+        ["low", "right", "high"].forEach((k) => {
+          document
+            .getElementById(`btn-${k}`)
+            .classList.remove("ring-2", "ring-indigo-500", "bg-white");
+        });
+        document
+          .getElementById(`btn-${key}`)
+          .classList.add("ring-2", "ring-indigo-500", "bg-white");
+
+        let html = `<h3 class="text-xl font-bold text-${data.color}-600 mb-4">${data.title}</h3>`;
+        html += `<ul class="grid grid-cols-1 md:grid-cols-2 gap-3">`;
+        data.points.forEach((p) => {
+          html += `<li class="flex items-center space-x-2 text-sm text-slate-700">
+                            <span class="w-1.5 h-1.5 bg-${data.color}-400 rounded-full"></span>
+                            <span>${p}</span>
+                         </li>`;
+        });
+        html += `</ul>`;
+        container.innerHTML = html;
+      }
+
+      // CHARTS LOGIC
+      function initCharts() {
+        const ctx = document.getElementById("plasmaChart").getContext("2d");
+
+        // Simulation of a 4-hour IR dose peaking at 1.5-2 hours
+        new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: [
+              "16:00",
+              "16:30",
+              "17:00",
+              "17:30",
+              "18:00",
+              "18:30",
+              "19:00",
+              "19:30",
+              "20:00",
+              "20:30",
+              "21:00",
+              "21:30",
+            ],
+            datasets: [
+              {
+                label: "Plasma Concentration",
+                data: [0, 0, 40, 75, 95, 100, 92, 80, 60, 35, 15, 5],
+                borderColor: "#6366f1",
+                backgroundColor: "rgba(99, 102, 241, 0.1)",
+                fill: true,
+                tension: 0.4,
+                pointRadius: 0,
+              },
+              {
+                label: "Optimal Focus Window",
+                data: [
+                  null,
+                  null,
+                  100,
+                  100,
+                  100,
+                  100,
+                  100,
+                  100,
+                  100,
+                  100,
+                  100,
+                  null,
+                ],
+                borderColor: "transparent",
+                backgroundColor: "rgba(16, 185, 129, 0.1)",
+                fill: true,
+                pointRadius: 0,
+              },
+            ],
+          },
+          options: {
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                mode: "index",
+                intersect: false,
+              },
+            },
+            scales: {
+              y: {
+                display: false,
+                min: 0,
+                max: 120,
+              },
+              x: {
+                grid: { display: false },
+                ticks: { font: { size: 10 } },
+              },
+            },
+          },
+        });
+      }
+
+      // Initialize
+      window.onload = initCharts;
+    </script>
+  </body>
+</html>
