@@ -1,0 +1,93 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MAM + NordVPN — Quick setup</title><style>
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#18312e;background:#eef3f1;line-height:1.65}*{box-sizing:border-box}body{margin:0}header{background:#143d36;color:#fff;padding:54px max(24px,calc((100vw - 940px)/2)) 42px}h1{font-size:clamp(30px,5vw,48px);line-height:1.12;letter-spacing:-1.5px;max-width:850px;margin:14px 0 20px}header p{max-width:750px;color:#dbe8e3}.eyebrow{font-size:12px;font-weight:800;letter-spacing:1.7px;color:#277566}header .eyebrow{color:#91d9be}.route{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0}.route span{border:1px solid #62867a;border-radius:8px;padding:10px 15px}.route strong{color:#b7f1d6}main,nav{max-width:988px;padding:0 24px;margin:24px auto}nav{display:flex;gap:9px;flex-wrap:wrap}nav a{border-radius:30px;background:white;padding:6px 14px;color:#205e50;text-decoration:none;font-size:14px}section{background:white;border:1px solid #d8e3de;border-radius:15px;padding:30px 34px;margin:20px 0;scroll-margin-top:15px}h2{font-size:27px;line-height:1.25;margin:8px 0 20px;letter-spacing:-.5px}h3{font-size:19px}a{color:#146651;text-underline-offset:3px}li{padding-left:5px;margin:9px 0}aside{background:#eff6f2;border-left:4px solid #509b7e;padding:15px 18px;margin:20px 0}.warning{background:#fff4dc;border-color:#d59b2b}code{font-family:Consolas,ui-monospace,monospace;font-size:.9em;overflow-wrap:anywhere}.snippet{border-radius:9px;background:#102923;color:#e2f4e9;margin:20px 0;overflow:hidden}.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;background:#24463b;padding:9px 14px;font-size:12px;font-weight:650}button{font:inherit;cursor:pointer;border:1px solid #b9d0c5;border-radius:6px;background:#fff;color:#174c3e;padding:6px 13px}button:hover{background:#ddf5e9}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #cf8f18;outline-offset:3px}pre{padding:18px;margin:0;overflow:auto;line-height:1.6;font-size:13px;tab-size:4}pre code{font-size:inherit;overflow-wrap:normal}.done{display:block;border-top:1px solid #e0e9e3;padding-top:18px;margin-top:26px;font-size:14px;font-weight:650}.done input{width:18px;height:18px;vertical-align:middle;margin-right:9px;accent-color:#26765e}table{border-collapse:collapse;width:100%;font-size:14px}th,td{text-align:left;vertical-align:top;padding:14px;border-bottom:1px solid #dce7df}th{background:#eef5f0}td:first-child{width:29%;font-weight:650}.tools{display:flex;align-items:center;gap:16px;flex-wrap:wrap}.small,footer{font-size:13px;color:#547064}footer{padding:12px 0 35px}#status{position:fixed;bottom:20px;right:20px;background:#143d36;color:white;padding:12px 18px;border-radius:9px;max-width:90vw}#status:empty{display:none}@media(max-width:600px){section{padding:22px 19px}main,nav{padding:0 12px}th,td{padding:9px}h2{font-size:24px}}@media print{body{background:white}header{background:white;color:#173b30;padding:15px}header p,header .eyebrow{color:#173b30}nav,.copy,.tools,#status{display:none}main{padding:0;margin:0;max-width:none}section{border:0;padding:15px 0}.snippet,.bar{background:#f3f5f3;color:black}pre{white-space:pre-wrap;overflow-wrap:anywhere}aside{break-inside:avoid}a{color:black}.route span{border-color:#999}.route strong{color:black}}
+
+header{padding-top:32px;padding-bottom:25px}h1{font-size:38px}section{padding:22px 28px;margin:14px 0}h2{font-size:23px;margin-bottom:12px}p{margin:10px 0}.done{margin-top:16px;padding-top:12px}summary{cursor:pointer;font-weight:650;padding:12px 0}details p{font-size:14px}.snippet summary{padding:12px 16px}.extra{background:white;border:1px solid #d8e3de;border-radius:12px;padding:12px 25px;margin-top:24px}main{max-width:820px}header{padding-left:max(24px,calc((100vw - 772px)/2))}
+
+header{padding-top:32px;padding-bottom:25px}h1{font-size:38px}section{padding:22px 28px;margin:14px 0}h2{font-size:23px;margin-bottom:12px}p{margin:10px 0}.done{margin-top:16px;padding-top:12px}summary{cursor:pointer;font-weight:650;padding:12px 0}details p{font-size:14px}.snippet summary{padding:12px 16px}.extra{background:white;border:1px solid #d8e3de;border-radius:12px;padding:12px 25px;margin-top:24px}main{max-width:820px}header{padding-left:max(24px,calc((100vw - 772px)/2))}
+</style></head><body><header><div class="eyebrow">THE SHORT VERSION · WINDOWS</div><h1>Connect qBittorrent to MAM.</h1><p>Browser → home IP. qBittorrent + curl → same VPN IP.</p></header><main><div class="tools"><strong id="progress">0 of 6 steps complete</strong><button id="reset" type="button">Reset checkmarks</button></div><section id="step1"><div class="eyebrow">STEP 1 OF 6</div><h2>Get MAM approval</h2><p>Ask MAM staff to approve <strong>NordVPN + Dynamic Seedbox</strong>. Already approved? Continue.</p><label class="done"><input type="checkbox"> Done</label></section><section id="step2"><div class="eyebrow">STEP 2 OF 6</div><h2>Put both apps on the VPN</h2><p>Pause torrents. In <strong>NordVPN → Settings → Split tunneling</strong>, choose <strong>Enable VPN for selected apps</strong> and add:</p><ul><li><strong>qBittorrent</strong> — select its actual executable.</li><li><strong>curl</strong> — <code>C:\Windows\System32\curl.exe</code></li></ul><p>Reconnect NordVPN and restart qBittorrent. Your browser can stay on your home connection.</p><details><summary>Different mode label? / Protect against VPN drops</summary><p>If the list means “exclude from VPN,” keep qBittorrent and curl <strong>out</strong> of it. Remove any separate qBittorrent proxy for this setup.</p><p>In qBittorrent → Tools → Options → Advanced → Network interface, select the active NordVPN adapter. Verify it with your VPN protocol; do not guess the adapter name. Test that a legal public test torrent stops when the VPN disconnects, with MAM torrents paused. Check IPv6 too: the curl commands below test IPv4 only.</p></details><label class="done"><input type="checkbox"> Done</label></section><section id="step3"><div class="eyebrow">STEP 3 OF 6</div><h2>Check the IP</h2><p>Open <strong>Windows PowerShell</strong>. Copy, paste, and run:</p><div class="snippet"><div class="bar"><span>PowerShell</span><button class="copy" type="button">Copy command</button></div><pre tabindex="0"><code>&amp; &quot;$env:SystemRoot\System32\curl.exe&quot; -q -4 --noproxy &quot;*&quot; --fail --silent --show-error --connect-timeout 15 --max-time 30 https://api.ipify.org</code></pre></div><p><strong>Must show the VPN IP, not your home IP.</strong> Also confirm qBittorrent’s tracker IP matches through MAM’s diagnostic or staff. curl alone does not prove qBittorrent’s route.</p><details><summary>It shows my home IP</summary><p>Stop. Check the split-tunnel mode and the exact curl executable, then reconnect NordVPN and reopen PowerShell. If it still fails, restart Windows or contact NordVPN support. Do not register the home IP.</p></details><label class="done"><input type="checkbox"> Done</label></section><section id="step4"><div class="eyebrow">STEP 4 OF 6</div><h2>Get your MAM session cookie</h2><p>Open <a href="https://www.myanonamouse.net/preferences/index.php?view=security">MAM → Preferences → Security</a>. Create a dedicated session and enable <strong>Allow session to set Dynamic Seedbox IP</strong>. Follow the current form’s IP instructions.</p><p>Copy the <strong>mam_id value only</strong>. Keep it private; it is not your torrent passkey.</p><label class="done"><input type="checkbox"> Done</label></section><section id="step5"><div class="eyebrow">STEP 5 OF 6</div><h2>Run the update</h2><p>Click <strong>Copy command</strong>, paste into PowerShell, and run. Enter the verified qBittorrent VPN IPv4, type <strong>YES</strong> to confirm, then paste your cookie at the hidden prompt.</p><div class="snippet"><div class="bar"><span>PowerShell · setup + future updates</span><button class="copy" type="button">Copy command</button></div><details><summary>Show command (optional)</summary><pre tabindex="0"><code>&amp; {
+    $ErrorActionPreference = &#x27;Stop&#x27;
+    $curl = &quot;$env:SystemRoot\System32\curl.exe&quot;
+    $endpoint = &#x27;https://t.myanonamouse.net/json/dynamicSeedbox.php&#x27;
+    $dir = Join-Path $env:LOCALAPPDATA &#x27;MAM-Seedbox&#x27;
+    $jar = Join-Path $dir &#x27;mam.cookies&#x27;
+    $common = @(&#x27;-q&#x27;, &#x27;-4&#x27;, &#x27;--noproxy&#x27;, &#x27;*&#x27;, &#x27;--fail&#x27;, &#x27;--silent&#x27;,
+        &#x27;--show-error&#x27;, &#x27;--connect-timeout&#x27;, &#x27;15&#x27;, &#x27;--max-time&#x27;, &#x27;30&#x27;)
+
+    $expected = (Read-Host &#x27;Enter the independently verified qBittorrent VPN IPv4&#x27;).Trim()
+    $parsed = $null
+    if (-not [Net.IPAddress]::TryParse($expected, [ref]$parsed) -or
+        $parsed.AddressFamily -ne [Net.Sockets.AddressFamily]::InterNetwork) {
+        throw &#x27;Enter a valid public IPv4 address, not an adapter address.&#x27;
+    }
+    $actual = &amp; $curl @common &#x27;https://api.ipify.org&#x27;
+    if ($LASTEXITCODE -ne 0) { throw &#x27;IP check failed. No update sent.&#x27; }
+    if ((&quot;$actual&quot;).Trim() -ne $expected) {
+        throw &quot;IP mismatch: curl uses $actual. No update sent. Fix routing first.&quot;
+    }
+    if ((Read-Host &#x27;NordVPN connected, route verified, and MAM VPN approval obtained? Type YES&#x27;) -cne &#x27;YES&#x27;) {
+        throw &#x27;Stopped. No update sent.&#x27;
+    }
+    New-Item -ItemType Directory -Path $dir -Force | Out-Null
+    # Restrict this dedicated folder to your Windows account.
+    $sid = [Security.Principal.WindowsIdentity]::GetCurrent().User.Value
+    &amp; &quot;$env:SystemRoot\System32\icacls.exe&quot; $dir /inheritance:r /grant:r &quot;*${sid}:(OI)(CI)F&quot; | Out-Null
+    if ($LASTEXITCODE -ne 0) { throw &#x27;Could not protect cookie folder.&#x27; }
+
+    $requestArgs = @($common | Where-Object { $_ -ne &#x27;--fail&#x27; })
+    $requestArgs += @(&#x27;--write-out&#x27;, &quot;`nMAM_HTTP_STATUS:%{http_code}&quot;)
+    $hasCookie = (Test-Path -LiteralPath $jar) -and
+        (Select-String -LiteralPath $jar -Pattern &quot;`tmam_id`t[^\s]+&quot; -Quiet)
+    if ($hasCookie) {
+        $raw = &amp; $curl @requestArgs --cookie $jar --cookie-jar $jar $endpoint
+        $exitCode = $LASTEXITCODE
+    } else {
+        $secret = Read-Host &#x27;Paste ONLY the mam_id value (hidden), then Enter&#x27; -AsSecureString
+        $ptr = [IntPtr]::Zero
+        $token = $null
+        try {
+            $ptr = [Runtime.InteropServices.Marshal]::SecureStringToBSTR($secret)
+            $token = [Runtime.InteropServices.Marshal]::PtrToStringBSTR($ptr)
+            if ($token -cnotmatch &#x27;^[A-Za-z0-9%._~+/=-]+$&#x27;) {
+                throw &#x27;Unexpected cookie characters. Use only its value; do not add quotes or mam_id=.&#x27;
+            }
+            # Feed the secret through stdin, not the process command line.
+            $raw = (&#x27;cookie = &quot;mam_id=&#x27; + $token + &#x27;&quot;&#x27;) |
+                &amp; $curl @requestArgs --config - --cookie-jar $jar $endpoint
+            $exitCode = $LASTEXITCODE
+        } finally {
+            if ($ptr -ne [IntPtr]::Zero) {
+                [Runtime.InteropServices.Marshal]::ZeroFreeBSTR($ptr)
+            }
+            $token = $null
+            $secret.Dispose()
+        }
+    }
+    if ($exitCode -ne 0) { throw &quot;Network request failed (curl exit $exitCode). Read the curl error above.&quot; }
+    $responseText = $raw -join &quot;`n&quot;
+    if ($responseText -notmatch &#x27;(?s)^(.*)\r?\nMAM_HTTP_STATUS:(\d{3})$&#x27;) {
+        throw &#x27;Could not read HTTP status. Do not assume MAM updated.&#x27;
+    }
+    $body = $Matches[1]
+    $httpStatus = [int]$Matches[2]
+    if ($httpStatus -lt 200 -or $httpStatus -ge 300) {
+        Write-Host &quot;HTTP $httpStatus - server response (review privately):&quot;
+        Write-Host $body.Substring(0, [Math]::Min(3000, $body.Length))
+        throw &#x27;MAM did not confirm an update. Share only the short error text, never cookies or passkeys.&#x27;
+    }
+    try { $result = $body | ConvertFrom-Json }
+    catch { throw &#x27;Non-JSON response. Stop and check MAM service status/support.&#x27; }
+    if ($result.Success -ne $true) {
+        Write-Host ($raw -join &quot;`n&quot;)
+        throw &#x27;MAM did not confirm success. Read the troubleshooting section.&#x27;
+    }
+    Write-Host &#x27;MAM confirmed Success=true. Now verify the torrent tracker in qBittorrent.&#x27;
+    if (-not (Test-Path -LiteralPath $jar) -or
+        -not (Select-String -LiteralPath $jar -Pattern &quot;`tmam_id`t&quot; -Quiet)) {
+        Write-Warning &#x27;No reusable mam_id cookie found. Check session setup before the next update.&#x27;
+    }
+}</code></pre></details></div><p><strong>Look for “MAM confirmed Success=true.”</strong> The cookie is saved privately on this PC for later updates. Never share it.</p><label class="done"><input type="checkbox"> Done</label></section><section id="step6"><div class="eyebrow">STEP 6 OF 6</div><h2>Check qBittorrent</h2><p>Select a MAM torrent → <strong>Trackers</strong>. Wait for its next announce. The tracker should work without “Unrecognized host/PassKey.”</p><p><strong>VPN IP changed?</strong> Recheck step 3, then rerun step 5 before resuming MAM torrents.</p><label class="done"><input type="checkbox"> Done</label></section><details class="extra"><summary>Still stuck? Sources & privacy notes</summary><p><strong>HTTP 403:</strong> the server refused the request. Read the response now printed by step 5. A session error calls for checking your dedicated session and its permission; an HTML access-denied/security page calls for MAM staff to review the VPN IP. Do not repeatedly retry or change IPs to bypass a block.</p><p><strong>Invalid session / Invalid Cookie / Incorrect session type:</strong> create a fresh dedicated MAM session with Dynamic Seedbox permission, then remove the saved cookie below. Rerun step 5 and paste only the new <code>mam_id</code> value at the hidden prompt.</p><div class="snippet"><div class="bar"><span>PowerShell · remove the saved cookie</span><button class="copy" type="button">Copy command</button></div><pre tabindex="0"><code>Remove-Item -LiteralPath "$env:LOCALAPPDATA\MAM-Seedbox\mam.cookies" -Confirm</code></pre></div><p>This asks before deleting the local cookie. It does not revoke the session on MAM.</p><p><strong>Last change too recent:</strong> wait for MAM’s allowed interval; do not repeatedly retry.</p><p><strong>Success but tracker rejects:</strong> ask MAM staff to check your diagnostic and tracker IP. Keep cookies, passkeys, and full tracker URLs out of screenshots.</p><p>The saved cookie is plaintext under <code>%LOCALAPPDATA%\MAM-Seedbox\mam.cookies</code>, in a folder restricted to your account. Administrators and software running as you can still read it. Clear clipboard history after pasting. Revoke a leaked session in MAM.</p><p>Verified 28 October 2026: <a href="https://github.com/myanonamouse/seedboxapi/blob/main/wrapper.sh">MAM’s official script</a> confirms the endpoint, mam_id authentication, cookie renewal, and Success response. <a href="https://support.nordvpn.com/hc/en-us/articles/19618692366865-What-is-Split-Tunneling-and-how-to-use-it-with-NordVPN">NordVPN setup</a> · <a href="https://support.nordvpn.com/hc/en-us/articles/20913128327313-Split-Tunneling-is-not-working-on-NordVPN">NordVPN troubleshooting</a> · <a href="https://github.com/qbittorrent/qBittorrent/wiki/Explanation-of-Options-in-qBittorrent#advanced">qBittorrent interface settings</a>.</p><p>MAM’s signed-in UI and your approval status were not verified. Follow current staff guidance. Commands were reviewed, but not live-tested on Windows or your MAM account. IP checks contact ipify; the guide itself makes no network requests.</p></details><footer>Copy buttons copy commands; they do not run them. Checkmarks reset when you reload.</footer></main><div id="status" role="status" aria-live="polite"></div><script>
+const statusBox=document.getElementById('status');let timer;
+function status(text){statusBox.textContent=text;clearTimeout(timer);timer=setTimeout(()=>statusBox.textContent='',5000)}
+document.querySelectorAll('.copy').forEach(button=>button.addEventListener('click',async()=>{const code=button.closest('.snippet').querySelector('code');const text=code.textContent;try{if(!navigator.clipboard)throw Error();await navigator.clipboard.writeText(text);status('Command copied. Paste into the labeled shell.')}catch(e){const details=code.closest('details');if(details)details.open=true;const selection=window.getSelection();const range=document.createRange();range.selectNodeContents(code);selection.removeAllRanges();selection.addRange(range);status('Text selected. Press Ctrl+C (or Command+C) to copy.')}}));
+const boxes=[...document.querySelectorAll('.done input')];function updateProgress(){document.getElementById('progress').textContent=boxes.filter(x=>x.checked).length+' of 6 steps complete'}boxes.forEach(x=>x.addEventListener('change',updateProgress));document.getElementById('reset').addEventListener('click',()=>{boxes.forEach(x=>x.checked=false);updateProgress()});
+</script></body></html>
